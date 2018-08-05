@@ -125,6 +125,46 @@
           }
         }
       }
+    },
+    "softgami-ng6-core": {
+      "root": "projects/softgami-ng6-core",
+      "sourceRoot": "projects/softgami-ng6-core/src",
+      "projectType": "library",
+      "prefix": "snc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/softgami-ng6-core/tsconfig.lib.json",
+            "project": "projects/softgami-ng6-core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/softgami-ng6-core/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/softgami-ng6-core/src/test.ts",
+            "tsConfig": "projects/softgami-ng6-core/tsconfig.spec.json",
+            "karmaConfig": "projects/softgami-ng6-core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/softgami-ng6-core/tsconfig.lib.json",
+              "projects/softgami-ng6-core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "my-app"
