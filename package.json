@@ -1,23 +1,28 @@
 {
   "name": "softgami-ng6-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --aot",
+    "s": "ng serve --aot",
     "build": "ng build",
     "build-lib": "ng build --prod softgami-ng6-core",
+    "bl": "ng build --prod softgami-ng6-core",
     "npm-pack": "cd dist/softgami-ng6-core && npm pack",
     "package": "npm run build-lib && npm run npm-pack",
-    "test": "ng test",
+    "test": "ng test my-app --code-coverage",
+    "t": "ng test my-app --code-coverage",
+    "test-lib": "ng test softgami-ng6-core --code-coverage",
+    "t-lib": "ng test softgami-ng6-core --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^6.0.3",
-    "@angular/core": "^6.0.3",
-    "@angular/compiler": "^6.0.3",
     "@angular/animations": "^6.0.3",
+    "@angular/common": "^6.0.3",
+    "@angular/compiler": "^6.0.3",
+    "@angular/core": "^6.0.3",
     "@angular/forms": "^6.0.3",
     "@angular/http": "^6.0.3",
     "@angular/platform-browser": "^6.0.3",
@@ -25,6 +30,7 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
+    "softgami-ts-core": "1.2.3",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
