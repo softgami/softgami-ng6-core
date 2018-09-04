@@ -5,3 +5,5 @@
 export * from './lib/softgami-ng6-core.service';
 export * from './lib/softgami-ng6-core.component';
 export * from './lib/softgami-ng6-core.module';
+
+export * from './lib/index';
