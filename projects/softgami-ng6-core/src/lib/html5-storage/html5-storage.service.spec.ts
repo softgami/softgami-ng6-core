@@ -1,28 +1,24 @@
 import { TestBed, inject } from '@angular/core/testing';
 import * as CryptoJS from 'crypto-js';
 
-import { SessionStorageService } from './session-storage.service';
-import { SHOULD_ENCRYPT } from './should-encrypt.const';
+import { Html5StorageService } from './html5-storage.service';
 
-describe('SessionStorageService', () => {
+describe('Html5StorageService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                SessionStorageService,
-                {
-                    provide: SHOULD_ENCRYPT,
-                    useValue: true,
-                },
+                Html5StorageService,
             ],
         });
     });
 
-    it('should be created', inject([SessionStorageService], (service: SessionStorageService) => {
+    it('should be created', inject([Html5StorageService], (service: Html5StorageService) => {
         expect(service).toBeTruthy();
     }));
 
     it('when should not encrypt should set session storage without encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spy = spyOn(window.sessionStorage, 'setItem').and.returnValue(true);
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsEncrypt = spyOn(CryptoJS.AES, 'encrypt').and.returnValue('encryptedValue');
@@ -36,7 +32,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when should encrypt should set session storage with encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'setItem').and.returnValue(true);
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsEncrypt = spyOn(CryptoJS.AES, 'encrypt').and.returnValue('encryptedValue');
@@ -51,7 +48,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when should not encrypt and value string should get session storage string without encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue('"valueFromSessionStorage"');
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsDecrypt = spyOn(CryptoJS.AES, 'decrypt').and.returnValue('encryptedValue');
@@ -67,7 +65,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when should not encrypt and value undefined should get session storage undefined without encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue(undefined);
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsDecrypt = spyOn(CryptoJS.AES, 'decrypt').and.returnValue('encryptedValue');
@@ -83,7 +82,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when should encrypt and value undefined should get session storage undefined with encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue(undefined);
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsDecrypt = spyOn(CryptoJS.AES, 'decrypt').and.returnValue('encryptedValue');
@@ -100,7 +100,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when should encrypt and value string parseable should get session storage string with encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue('"valueFromSessionStorage"');
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsDecrypt = spyOn(CryptoJS.AES, 'decrypt').and.returnValue('"decryptedValue"');
@@ -117,7 +118,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when should encrypt and value string not parseable should get session storage undefined with encryption',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue('"valueFromSessionStorage"');
         const spyCryptoJsSHA512 = spyOn(CryptoJS, 'SHA512').and.returnValue('encryptedKey');
         const spyCryptoJsDecrypt = spyOn(CryptoJS.AES, 'decrypt').and.returnValue('decryptedValue not parseable');
@@ -134,7 +136,8 @@ describe('SessionStorageService', () => {
     }));
 
     it('when clear called should call sessionStorage clear',
-        inject([SessionStorageService], (service: SessionStorageService) => {
+        inject([Html5StorageService], (service: Html5StorageService) => {
+        service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'clear').and.returnValue(true);
 
         service.clear();

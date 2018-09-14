@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SoftgamiNg6CoreModule, SessionStorageModule } from 'softgami-ng6-core';
+import { SoftgamiNg6CoreModule, Html5StorageModule } from 'softgami-ng6-core';
 
 @NgModule({
     declarations: [
@@ -13,7 +13,7 @@ import { SoftgamiNg6CoreModule, SessionStorageModule } from 'softgami-ng6-core';
         BrowserModule,
         AppRoutingModule,
         SoftgamiNg6CoreModule,
-        SessionStorageModule.forRoot(false),
+        Html5StorageModule.forRoot(true, true),
     ],
     providers: [],
     bootstrap: [AppComponent]

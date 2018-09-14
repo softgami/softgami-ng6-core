@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SessionStorageService } from 'softgami-ng6-core';
+import { LocalStorageService, SessionStorageService } from 'softgami-ng6-core';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +9,10 @@ import { SessionStorageService } from 'softgami-ng6-core';
 export class AppComponent {
     title = 'my-app';
 
-    constructor(private sessionStorageService: SessionStorageService) {
-        console.log(this.sessionStorageService.shouldEncrypt);
+    constructor(
+        private sessionStorageService: SessionStorageService,
+        private localStorageService: LocalStorageService,
+    ) {
+
     }
 }

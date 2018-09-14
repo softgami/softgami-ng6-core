@@ -1,1 +1,1 @@
-export * from './session-storage/index';
+export * from './html5-storage/index';
