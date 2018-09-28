@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { InjectionToken, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 
 import { LocalStorageService } from './local-storage/local-storage.service';
 import { SessionStorageService } from './session-storage/session-storage.service';
@@ -12,7 +12,7 @@ import { SHOULD_ENCRYPT_SESSION_STORAGE } from './should-encrypt-session-storage
     ],
 })
 export class Html5StorageModule {
-    static forRoot(shouldEncryptSessionStorage: boolean, shouldEncryptLocalStorage: boolean) {
+    static forRoot(shouldEncryptSessionStorage: boolean, shouldEncryptLocalStorage: boolean): ModuleWithProviders {
         return {
             ngModule: Html5StorageModule,
             providers: [
