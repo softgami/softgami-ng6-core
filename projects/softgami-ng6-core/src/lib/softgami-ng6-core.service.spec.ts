@@ -10,6 +10,8 @@ describe('SoftgamiNg6CoreService', () => {
     });
 
     it('should be created', inject([SoftgamiNg6CoreService], (service: SoftgamiNg6CoreService) => {
+
         expect(service).toBeTruthy();
+
     }));
 });

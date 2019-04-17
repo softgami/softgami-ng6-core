@@ -20,7 +20,9 @@ describe('LocalStorageService', () => {
     });
 
     it('should be created', inject([LocalStorageService], (service: LocalStorageService) => {
+
         expect(service).toBeTruthy();
+
     }));
 
     it('should call super set when values are passed', inject([LocalStorageService], (service: LocalStorageService) => {

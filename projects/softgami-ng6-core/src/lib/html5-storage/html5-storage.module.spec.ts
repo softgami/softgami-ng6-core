@@ -13,10 +13,13 @@ describe('Html5StorageModule', () => {
     });
 
     it('should create an instance', () => {
+
         expect(html5StorageModule).toBeTruthy();
+
     });
 
     it('when should encrypt session true and should encrypt local true should return object', () => {
+
         expect(html5StorageModule).toBeTruthy();
 
         const result = Html5StorageModule.forRoot(true, true);
@@ -36,9 +39,11 @@ describe('Html5StorageModule', () => {
                 SessionStorageService,
             ],
         });
+
     });
 
     it('when should encrypt session true and should encrypt local false should return object', () => {
+
         expect(html5StorageModule).toBeTruthy();
 
         const result = Html5StorageModule.forRoot(true, false);
@@ -58,9 +63,11 @@ describe('Html5StorageModule', () => {
                 SessionStorageService,
             ],
         });
+
     });
 
     it('when should encrypt session false and should encrypt local true should return object', () => {
+
         expect(html5StorageModule).toBeTruthy();
 
         const result = Html5StorageModule.forRoot(false, true);
@@ -80,9 +87,11 @@ describe('Html5StorageModule', () => {
                 SessionStorageService,
             ],
         });
+
     });
 
     it('when should encrypt session false and should encrypt local false should return object', () => {
+
         expect(html5StorageModule).toBeTruthy();
 
         const result = Html5StorageModule.forRoot(false, false);
@@ -102,5 +111,6 @@ describe('Html5StorageModule', () => {
                 SessionStorageService,
             ],
         });
+
     });
 });

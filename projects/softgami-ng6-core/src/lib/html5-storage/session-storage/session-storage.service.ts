@@ -30,7 +30,9 @@ export class SessionStorageService extends Html5StorageService {
     }
 
     clear() {
+
         super.clear();
+
     }
 
 }

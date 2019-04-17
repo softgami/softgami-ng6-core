@@ -30,7 +30,9 @@ export class LocalStorageService extends Html5StorageService {
     }
 
     clear() {
+
         super.clear();
+
     }
 
 }

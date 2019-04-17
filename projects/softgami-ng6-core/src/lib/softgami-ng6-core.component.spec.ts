@@ -14,12 +14,16 @@ describe('SoftgamiNg6CoreComponent', () => {
     }));
 
     beforeEach(() => {
+
         fixture = TestBed.createComponent(SoftgamiNg6CoreComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+
     });
 
     it('should create', () => {
+
         expect(component).toBeTruthy();
+
     });
 });
