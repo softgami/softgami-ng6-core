@@ -42,11 +42,11 @@ export abstract class Html5StorageService {
 
     }
 
-    get(key: string): object | number | string | boolean | undefined {
+    get<T>(key: string): T {
 
         if (!this.shouldEncrypt) {
           const value: string = this.storage.getItem(key);
-          return value ? JSON.parse(value) : undefined;
+          return value ? JSON.parse(value) as T : undefined;
         }
 
         const hashedKey = CryptoJS.SHA512(key).toString();
@@ -65,7 +65,7 @@ export abstract class Html5StorageService {
         try {
             decryptedValue = JSON.parse(encryptedString);
         } catch (e) {}
-        return decryptedValue;
+        return decryptedValue as T;
 
     }
 

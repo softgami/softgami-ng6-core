@@ -23,9 +23,9 @@ export class LocalStorageService extends Html5StorageService {
 
     }
 
-    get(key: string): object | number | string | boolean | undefined {
+    get<T>(key: string): T {
 
-        return super.get(key);
+        return super.get<T>(key);
 
     }
 
