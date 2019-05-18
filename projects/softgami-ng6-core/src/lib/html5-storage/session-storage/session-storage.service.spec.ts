@@ -5,7 +5,10 @@ import { SessionStorageService } from './session-storage.service';
 import { SHOULD_ENCRYPT_SESSION_STORAGE } from '../should-encrypt-session-storage.const';
 
 describe('SessionStorageService', () => {
+
     let spySuper;
+    let service: SessionStorageService;
+
     beforeEach(() => {
 
         TestBed.configureTestingModule({
@@ -19,13 +22,19 @@ describe('SessionStorageService', () => {
         });
     });
 
-    it('should be created', inject([SessionStorageService], (service: SessionStorageService) => {
+    beforeEach(() => {
+
+        service = TestBed.get(SessionStorageService);
+
+    });
+
+    it('should be created', () => {
 
         expect(service).toBeTruthy();
 
-    }));
+    });
 
-    it('should call super set when values are passed', inject([SessionStorageService], (service: SessionStorageService) => {
+    it('set should call super set when values are passed', () => {
 
         spySuper = spyOn(Html5StorageService.prototype, 'set');
 
@@ -37,9 +46,9 @@ describe('SessionStorageService', () => {
 
         expect(spySuper).toHaveBeenCalledWith('key2', 'value2');
 
-    }));
+    });
 
-    it('should call super get when values are passed', inject([SessionStorageService], (service: SessionStorageService) => {
+    it('set should call super get when values are passed', () => {
 
         spySuper = spyOn(Html5StorageService.prototype, 'get').and.returnValue('value');
 
@@ -55,9 +64,9 @@ describe('SessionStorageService', () => {
         expect(spySuper).toHaveBeenCalledWith('key2');
         expect(result2).toEqual('value2');
 
-    }));
+    });
 
-    it('should call super clear when clear was called', inject([SessionStorageService], (service: SessionStorageService) => {
+    it('set should call super clear when clear was called', () => {
 
         spySuper = spyOn(Html5StorageService.prototype, 'clear');
 
@@ -65,6 +74,13 @@ describe('SessionStorageService', () => {
 
         expect(spySuper).toHaveBeenCalled();
 
-    }));
+    });
+
+    afterEach(() => {
+
+        spySuper = null;
+        service = null;
+
+    });
 
 });

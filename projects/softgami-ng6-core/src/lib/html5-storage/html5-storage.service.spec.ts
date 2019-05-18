@@ -5,6 +5,8 @@ import { Html5StorageService } from './html5-storage.service';
 
 describe('Html5StorageService', () => {
 
+    let service: Html5StorageService;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -13,14 +15,39 @@ describe('Html5StorageService', () => {
         });
     });
 
-    it('should be created', inject([Html5StorageService], (service: Html5StorageService) => {
+    beforeEach(() => {
+
+        service = TestBed.get(Html5StorageService);
+
+    });
+
+    it('should be created', () => {
 
         expect(service).toBeTruthy();
 
-    }));
+    });
 
-    it('when should not encrypt should set session storage without encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('set should return when value is null', () => {
+
+        const spy = spyOn(window.sessionStorage, 'setItem').and.returnValue(true);
+
+        service.set('key', null);
+
+        expect(spy).not.toHaveBeenCalled();
+
+    });
+
+    it('set should return when value is undefined', () => {
+
+        const spy = spyOn(window.sessionStorage, 'setItem').and.returnValue(true);
+
+        service.set('key', undefined);
+
+        expect(spy).not.toHaveBeenCalled();
+
+    });
+
+    it('set should set session storage without encryption when should not encrypt ', () => {
 
         service.storage = window.sessionStorage;
         const spy = spyOn(window.sessionStorage, 'setItem').and.returnValue(true);
@@ -36,10 +63,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsEncrypt).not.toHaveBeenCalled();
         expect(spyChange).toHaveBeenCalledWith('key');
 
-    }));
+    });
 
-    it('when should encrypt should set session storage with encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('set should set session storage with encryption when should encrypt', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'setItem').and.returnValue(true);
@@ -55,10 +81,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsEncrypt).toHaveBeenCalledWith(JSON.stringify('value'), service.privateKey);
         expect(spyChange).toHaveBeenCalledWith('key');
 
-    }));
+    });
 
-    it('when should not encrypt and value string should get session storage string without encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('get should return session storage string without encryption when should not encrypt and value string ', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue('"valueFromSessionStorage"');
@@ -73,10 +98,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsSHA512).not.toHaveBeenCalled();
         expect(spyCryptoJsDecrypt).not.toHaveBeenCalled();
 
-    }));
+    });
 
-    it('when should not encrypt and value undefined should get session storage undefined without encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('get should return session storage undefined without encryption when should not encrypt and value undefined', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue(undefined);
@@ -91,10 +115,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsSHA512).not.toHaveBeenCalled();
         expect(spyCryptoJsDecrypt).not.toHaveBeenCalled();
 
-    }));
+    });
 
-    it('when should encrypt and value undefined should get session storage undefined with encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('get should return session storage undefined with encryption when should encrypt and value undefined', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue(undefined);
@@ -110,10 +133,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsSHA512).toHaveBeenCalledWith('key');
         expect(spyCryptoJsDecrypt).not.toHaveBeenCalled();
 
-    }));
+    });
 
-    it('when should encrypt and value string parseable should get session storage string with encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('get should return session storage string with encryption when should encrypt and value string parseable', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue('"valueFromSessionStorage"');
@@ -129,10 +151,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsSHA512).toHaveBeenCalled();
         expect(spyCryptoJsDecrypt).toHaveBeenCalledWith('"valueFromSessionStorage"', service.privateKey);
 
-    }));
+    });
 
-    it('when should encrypt and value string not parseable should get session storage undefined with encryption',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('get should return session storage undefined with encryption when should encrypt and value string not parseable', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'getItem').and.returnValue('"valueFromSessionStorage"');
@@ -148,10 +169,9 @@ describe('Html5StorageService', () => {
         expect(spyCryptoJsSHA512).toHaveBeenCalled();
         expect(spyCryptoJsDecrypt).toHaveBeenCalledWith('"valueFromSessionStorage"', service.privateKey);
 
-    }));
+    });
 
-    it('when clear called should call sessionStorage clear',
-        inject([Html5StorageService], (service: Html5StorageService) => {
+    it('clear should call sessionStorage clear when called', () => {
 
         service.storage = window.sessionStorage;
         const spySession = spyOn(window.sessionStorage, 'clear').and.returnValue(true);
@@ -160,5 +180,12 @@ describe('Html5StorageService', () => {
 
         expect(spySession).toHaveBeenCalled();
 
-    }));
+    });
+
+    afterEach(() => {
+
+        service = null;
+
+    });
+
 });
