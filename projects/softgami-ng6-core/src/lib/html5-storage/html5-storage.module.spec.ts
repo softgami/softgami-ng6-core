@@ -116,4 +116,11 @@ describe('Html5StorageModule', () => {
         });
 
     });
+
+    afterEach(() => {
+
+        html5StorageModule = null;
+
+    });
+
 });
