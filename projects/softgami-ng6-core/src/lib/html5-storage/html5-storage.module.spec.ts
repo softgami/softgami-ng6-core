@@ -6,10 +6,13 @@ import { SHOULD_ENCRYPT_LOCAL_STORAGE } from './should-encrypt-local-storage.con
 import { SHOULD_ENCRYPT_SESSION_STORAGE } from './should-encrypt-session-storage.const';
 
 describe('Html5StorageModule', () => {
+
     let html5StorageModule: Html5StorageModule;
 
     beforeEach(() => {
+
         html5StorageModule = new Html5StorageModule();
+
     });
 
     it('should create an instance', () => {
@@ -18,7 +21,7 @@ describe('Html5StorageModule', () => {
 
     });
 
-    it('when should encrypt session true and should encrypt local true should return object', () => {
+    it('forRoot should return object when should encrypt session true and should encrypt local true', () => {
 
         expect(html5StorageModule).toBeTruthy();
 
@@ -42,7 +45,7 @@ describe('Html5StorageModule', () => {
 
     });
 
-    it('when should encrypt session true and should encrypt local false should return object', () => {
+    it('forRoot should return object when should encrypt session true and should encrypt local false', () => {
 
         expect(html5StorageModule).toBeTruthy();
 
@@ -66,7 +69,7 @@ describe('Html5StorageModule', () => {
 
     });
 
-    it('when should encrypt session false and should encrypt local true should return object', () => {
+    it('forRoot should return object when should encrypt session false and should encrypt local true', () => {
 
         expect(html5StorageModule).toBeTruthy();
 
@@ -90,7 +93,7 @@ describe('Html5StorageModule', () => {
 
     });
 
-    it('when should encrypt session false and should encrypt local false should return object', () => {
+    it('forRoot should return object when should encrypt session false and should encrypt local false', () => {
 
         expect(html5StorageModule).toBeTruthy();
 
