@@ -25,6 +25,9 @@ export abstract class Html5StorageService {
 
     set(key: string, value: object | number | string | boolean): void {
 
+        if (value === undefined || value === null) {
+            return;
+        }
         if (!this.shouldEncrypt) {
             this.storage.setItem(key, JSON.stringify(value));
             this.changes.next(key);
